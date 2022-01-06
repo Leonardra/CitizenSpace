@@ -7,14 +7,12 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName="citizen_entity")
 data class Citizen(
-
-    @PrimaryKey(autoGenerate= true)
-    @NonNull
-    val id:Long,
     val name: String,
     val address: String,
-    val age: Int,
+    val age: String,
     val occupation: String,
     val maritalStatus: String
 ) {
+    @PrimaryKey(autoGenerate= true)
+    var id:Int = 0
 }

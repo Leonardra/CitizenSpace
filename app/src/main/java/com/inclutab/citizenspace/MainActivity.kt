@@ -4,8 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.inclutab.citizenspace.adapter.ItemAdapter
 import com.inclutab.citizenspace.db.CitizenDatabase
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +21,12 @@ class MainActivity : AppCompatActivity() {
             "citizen_db")
             .allowMainThreadQueries().build()
 
+        val myDataSet = dataBase.citizenDao().retrieveAll()
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        recyclerView.adapter = ItemAdapter(this, myDataSet)
+        recyclerView.setHasFixedSize(true)
+
         val floatingButton = findViewById<FloatingActionButton>(R.id.fab)
         floatingButton.setOnClickListener {
             openDataForm()
@@ -27,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openDataForm(){
-        val intent = Intent(this, dataForm::class.java)
+        val intent = Intent(this, DataForm::class.java)
         startActivity(intent)
     }
 }
