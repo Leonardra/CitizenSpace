@@ -1,5 +1,6 @@
 package com.inclutab.citizenspace.model
 
+import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -8,6 +9,7 @@ import androidx.room.PrimaryKey
 data class Citizen(
 
     @PrimaryKey(autoGenerate= true)
+    @NonNull
     val id:Long,
     val name: String,
     val address: String,
